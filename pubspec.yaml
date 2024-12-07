@@ -40,6 +40,8 @@ dependencies:
   bloc_concurrency: ^0.2.5
   bloc: ^8.1.4
   skeletonizer: ^1.4.2
+  intl: ^0.20.1
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
