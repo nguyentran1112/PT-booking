@@ -8,6 +8,13 @@ class OutlineButtonCommon extends StatelessWidget {
   final TextStyle? textStyle;
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: onPressed, style: style, child: Text(text, style: textStyle));
+    return OutlinedButton(
+        onPressed: onPressed,
+        style: style ??
+            OutlinedButton.styleFrom(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              side: const BorderSide(color: Colors.grey),
+            ),
+        child: Text(text, style: textStyle));
   }
 }
