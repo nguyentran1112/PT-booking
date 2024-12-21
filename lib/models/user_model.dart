@@ -19,6 +19,19 @@ class UserModel {
     this.avatar,
   });
 
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      avatar: json['avatar'] ?? '',
+      email: json['email'] ?? '',
+      phone: json['phone'] ?? '',
+      lat: json['lat'] ?? 0.0,
+      lng: json['lng'] ?? 0.0
+     
+    );
+  }
+
   UserModel copyWith({
     String? id,
     String? name,
