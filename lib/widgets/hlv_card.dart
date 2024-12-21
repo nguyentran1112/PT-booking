@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class HlvCard extends StatelessWidget {
-  const HlvCard({super.key, required this.name, required this.id, this.avatar, this.category});
+  const HlvCard(
+      {super.key,
+      required this.name,
+      required this.id,
+      this.avatar,
+      this.category});
   final String name;
   final String id;
   final String? avatar;
