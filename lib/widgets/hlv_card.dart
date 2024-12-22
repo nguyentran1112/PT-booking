@@ -15,15 +15,37 @@ class HlvCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            image: DecorationImage(
-              image: NetworkImage(avatar ?? 'https://via.placeholder.com/150'),
-              fit: BoxFit.cover,
-            ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.network(
+            avatar ?? 'https://via.placeholder.com/150',
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Container(
+                width: 100,
+                height: 100,
+                color: Colors.grey.shade300,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            (loadingProgress.expectedTotalBytes ?? 1)
+                        : null,
+                  ),
+                ),
+              );
+            },
+            errorBuilder: (context, error, stackTrace) {
+              return Container(
+                width: 100,
+                height: 100,
+                color: Colors.grey.shade300,
+                child: const Icon(Icons.image_rounded, size: 40, color: Colors.pink),
+              );
+            },
           ),
         ),
         const SizedBox(height: 8),
