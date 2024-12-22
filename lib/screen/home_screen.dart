@@ -17,21 +17,37 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.qr_code,
-                    size: 40,
-                  ),
-                  Icon(
-                    Icons.notifications_outlined,
-                    size: 40,
-                  ),
+                  Center(
+                      child: Ink(
+                    decoration: const ShapeDecoration(
+                      color: Colors.pinkAccent,
+                      shape: CircleBorder(),
+                    ),
+                    child: IconButton(
+                      icon: const Icon(Icons.qr_code),
+                      color: Colors.white,
+                      onPressed: () {},
+                    ),
+                  )),
+                  Center(
+                      child: Ink(
+                    decoration: const ShapeDecoration(
+                      color: Colors.pinkAccent,
+                      shape: CircleBorder(),
+                    ),
+                    child: IconButton(
+                      icon: const Icon(Icons.notifications_none),
+                      color: Colors.white,
+                      onPressed: () {},
+                    ),
+                  )),
                 ],
               ),
               const SizedBox(height: 16),
@@ -142,7 +158,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: HlvCard(
                           name: 'Nguyễn Văn A',
                           id: '1',
-                          avatar: 'https://via.placeholder.com/150',
+                          avatar:
+                              'https://i.ytimg.com/vi/QQRAZrz0Bkw/maxresdefault.jpg',
                           category: 'Gym',
                         ),
                       );
@@ -165,7 +182,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: HlvCard(
                           name: 'Nguyễn Văn A',
                           id: '1',
-                          avatar: 'https://via.placeholder.com/150',
+                          avatar:
+                              'https://i.ytimg.com/vi/QQRAZrz0Bkw/maxresdefault.jpg',
                           category: 'Gym',
                         ),
                       );
@@ -176,23 +194,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   )),
-               SizedBox(
+              SizedBox(
                 height: 170,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
                     itemBuilder: (context, index) {
-                        return Container(
-                          width: size.width *0.7,
-                          height: 150,
-                          margin: const EdgeInsets.only(left: 8),
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(10),
+                      return Container(
+                        width: size.width * 0.7,
+                        height: 150,
+                        margin: const EdgeInsets.only(left: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       );
                     }),
-              ),   
+              ),
             ],
           ),
         ),
