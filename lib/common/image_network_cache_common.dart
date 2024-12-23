@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class ImageNetworkCacheCommon extends StatelessWidget {
   const ImageNetworkCacheCommon({super.key, required this.imageUrl, this.placeholder, this.errorWidget, this.width, this.height, this.fit});
@@ -22,11 +21,11 @@ class ImageNetworkCacheCommon extends StatelessWidget {
   }
 
   Widget _buildPlaceholder() {
-    return Skeletonizer(
-        child: Container(
-      width: width,
-      height: height,
-      color: Colors.transparent,
-    ));
+    return Container(
+      alignment: Alignment.center,
+      width: 40,
+      height: 40,
+      child: const SizedBox(width: 20, height: 20, child: CircularProgressIndicator()),
+    );
   }
 }

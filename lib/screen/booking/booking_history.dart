@@ -1,9 +1,7 @@
-import 'package:fitness/models/booking_model.dart';
 import 'package:fitness/screen/booking/booking_card.dart';
 import 'package:fitness/screen/booking/booking_list/bloc/booking_list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class BookingHistory extends StatefulWidget {
   const BookingHistory({super.key});
@@ -43,7 +41,12 @@ class _BookingHistoryState extends State<BookingHistory> {
             itemBuilder: (context, index) {
               if (index >= state.bookings.length) {
                 if (state.hasMore) {
-                  return Skeletonizer(child: BookingCard(data: BookingModel().mockData));
+                  return Container(
+                    alignment: Alignment.center,
+                    width: 24,
+                    height: 24,
+                    child: const CircularProgressIndicator(),
+                  );
                 } else {
                   if (state.bookings.isEmpty) {
                     return const BookingEmpty();

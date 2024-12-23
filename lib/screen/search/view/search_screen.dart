@@ -1,10 +1,8 @@
 import 'package:fitness/common/text_field/text_search_common.dart';
-import 'package:fitness/models/search_item_model.dart';
 import 'package:fitness/screen/search/bloc/search_bloc.dart';
 import 'package:fitness/screen/search/view/item_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -126,14 +124,10 @@ class _SearchScreenState extends State<SearchScreen> {
                         ],
                       );
                     }
-                    return Skeletonizer(
-                      child: ItemSearch(
-                        item: SearchItemModel(
-                          id: '1',
-                          title: 'title                                                            text',
-                          image: 'https://picsum.photos/200/300?random=1',
-                        ),
-                      ),
+                    return const SizedBox(
+                      height: 24,
+                      width: 24,
+                      child: CircularProgressIndicator(),
                     );
                   },
                 ),
