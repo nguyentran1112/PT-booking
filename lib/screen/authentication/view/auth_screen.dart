@@ -1,19 +1,18 @@
+import 'package:fitness/routing/router_constants.dart';
 import 'package:fitness/screen/authentication/authentication_bloc/authentication_bloc.dart';
-import 'package:fitness/screen/main_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:go_router/go_router.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
   @override
-  _AuthScreenState createState() => _AuthScreenState();
+  State<AuthScreen> createState() => _AuthScreenState();
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  bool _isLoading = false;
+  final bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +23,7 @@ class _AuthScreenState extends State<AuthScreen> {
       body: BlocListener<AuthenticationBloc, AuthenticationState>(
         listener: (context, state) {
           if (state is AuthenticationSuccess) {
-             Navigator.of(context).pushAndRemoveUntil(
-                                          MaterialPageRoute(
-                                              builder: (context) => MainScreen()),
-                                              (route) => false
-                                        );
+            context.pushReplacementNamed(RouterConstants.home.name);
             
           }
         },

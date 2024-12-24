@@ -1,11 +1,12 @@
 import 'package:fitness/common/buttons/outline_button_common.dart';
 import 'package:fitness/models/fit_category.dart';
 import 'package:fitness/models/user_model.dart';
-import 'package:fitness/screen/qr_scan/qr_scan.dart';
+import 'package:fitness/routing/router_constants.dart';
 import 'package:fitness/screen/users/bloc/users_bloc.dart';
 import 'package:fitness/widgets/hlv_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -53,11 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         icon: const Icon(Icons.qr_code),
                         color: Colors.white,
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const QrScannerWidget()));
+                          context.pushNamed(RouterConstants.qrCode.name);
                         },
                       ),
                     )),
@@ -79,10 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 OutlineButtonCommon(
                   text: 'Tất cả',
                   onPressed: () {},
-                  textStyle: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600),
+                  textStyle: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
                   style: OutlinedButton.styleFrom(
                     // border radius
                     shape: RoundedRectangleBorder(
@@ -134,20 +128,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: fitCategories.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            childAspectRatio: 2.5 / 1,
-                            crossAxisSpacing: 4,
-                            mainAxisSpacing: 4),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 2.5 / 1, crossAxisSpacing: 4, mainAxisSpacing: 4),
                     itemBuilder: (context, index) {
                       return OutlineButtonCommon(
                           text: fitCategories[index].name,
                           onPressed: () {},
-                          textStyle: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600),
+                          textStyle: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
                           style: OutlinedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -207,8 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: HlvCard(
                             name: 'Nguyễn Văn A',
                             id: '1',
-                            avatar:
-                                'https://i.ytimg.com/vi/QQRAZrz0Bkw/maxresdefault.jpg',
+                            avatar: 'https://i.ytimg.com/vi/QQRAZrz0Bkw/maxresdefault.jpg',
                             category: 'Gym',
                           ),
                         );
