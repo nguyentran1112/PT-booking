@@ -2,6 +2,7 @@ import 'package:fitness/routing/router_constants.dart';
 import 'package:fitness/screen/authentication/authentication_bloc/authentication_bloc.dart';
 import 'package:fitness/screen/booking/booking_screen.dart';
 import 'package:fitness/screen/home_screen.dart';
+import 'package:fitness/screen/profile/profile_page.dart';
 import 'package:fitness/screen/search/view/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
     const HomeScreen(),
     const SearchScreen(),
     const BookingScreen(),
-    const HomeScreen(),
+    const ProfilePage(),
   ];
   int _currentIndex = 0;
   late AuthenticationBloc _authenticationBloc;
@@ -34,12 +35,19 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    _authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
+    _authenticationBloc = context.read<AuthenticationBloc>();
+    
+  }
+
+  @override
+  void didChangeDependencies() {
+    
     if (_authenticationBloc.state is Unauthenticated) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.pushReplacement(RouterConstants.login.path);
       });
     }
+    super.didChangeDependencies();
   }
 
   @override
@@ -52,7 +60,8 @@ class _MainScreenState extends State<MainScreen> {
         selectedItemColor: Colors.pink,
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal, color: Colors.grey),
+        unselectedLabelStyle:
+            const TextStyle(fontWeight: FontWeight.normal, color: Colors.grey),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

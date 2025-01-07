@@ -13,7 +13,6 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final bool _isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +23,6 @@ class _AuthScreenState extends State<AuthScreen> {
         listener: (context, state) {
           if (state is AuthenticationSuccess) {
             context.pushReplacementNamed(RouterConstants.home.name);
-            
           }
         },
         child: Center(
