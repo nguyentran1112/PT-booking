@@ -9,6 +9,8 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() async{
   usePathUrlStrategy();
+  //WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => AuthenticationBloc(),
+            create: (context) => AuthenticationBloc()..add(AppLoad()),
           ),
         BlocProvider(
           create: (context) => UsersBloc(),
