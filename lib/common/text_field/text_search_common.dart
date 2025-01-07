@@ -1,5 +1,7 @@
+import 'package:fitness/utils/color_utils.dart';
 import 'package:fitness/utils/debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class TextSearchCommon extends StatefulWidget {
   const TextSearchCommon({super.key, this.onChanged});
@@ -21,10 +23,24 @@ class _TextSearchCommonState extends State<TextSearchCommon> {
     return TextFormField(
       decoration: InputDecoration(
         hintText: 'Tìm kiếm',
-        prefixIcon: const Icon(Icons.search),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+        prefixIcon: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SvgPicture.asset(
+            'assets/search.svg',
+            colorFilter: ColorFilter.mode(
+                ColorUtils.fromHex('#FA6400'), BlendMode.srcIn),
+            fit: BoxFit.scaleDown,
+          ),
         ),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(50),
+            borderSide: BorderSide.none
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        filled: true,
+        isDense: true,
+        fillColor: ColorUtils.fromHex('#F6F6F6'),
+          
       ),
       onChanged: _onChanged,
     );
