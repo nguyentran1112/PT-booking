@@ -1,10 +1,13 @@
+import 'package:fitness/routing/router_constants.dart';
 import 'package:fitness/screen/authentication/authentication_bloc/authentication_bloc.dart';
 import 'package:fitness/screen/booking/booking_screen.dart';
 import 'package:fitness/screen/bottom_bar_icon.dart';
 import 'package:fitness/screen/favorite/favorite_screen.dart';
 import 'package:fitness/screen/home_screen/home_screen.dart';
+import 'package:fitness/screen/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -19,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     const FavoriteScreen(),
     const BookingScreen(),
     const HomeScreen(),
-    const HomeScreen(),
+    const ProfilePage(),
   ];
   int _currentIndex = 0;
   late AuthenticationBloc _authenticationBloc;
@@ -34,12 +37,19 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    _authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
-    // if (_authenticationBloc.state is Unauthenticated) {
-    //   WidgetsBinding.instance.addPostFrameCallback((_) {
-    //     context.pushReplacement(RouterConstants.login.path);
-    //   });
-    // }
+    _authenticationBloc = context.read<AuthenticationBloc>();
+    
+  }
+
+  @override
+  void didChangeDependencies() {
+    
+    if (_authenticationBloc.state is Unauthenticated) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.pushReplacement(RouterConstants.login.path);
+      });
+    }
+    super.didChangeDependencies();
   }
 
   @override
