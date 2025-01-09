@@ -1,5 +1,5 @@
-import 'package:fitness/models/gym_room_model.dart';
-import 'package:fitness/screen/home_screen/gym_card.dart';
+import 'package:fitness/models/user_model.dart';
+import 'package:fitness/screen/home_screen/partner_card.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -40,12 +40,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  GymCard(
-                    gymRoomModel: GymRoomModel(
+                  PartnerCard(
+                    userModel: UserModel(
                         id: '1',
-                        avatar: 'https://iili.io/2g3elvS.png',
+                        avatar: 'https://iili.io/2rBi3jR.jpg',
                         price: 4500000,
-                        name: 'Gym California',
+                        name: 'Nguyen Van A',
                         rating: 4.5),
                     algin: Algin.horizontal,
                   ),

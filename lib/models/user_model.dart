@@ -8,6 +8,8 @@ class UserModel {
   double? lng;
   String? phone;
   String? avatar;
+  double? price;
+  double? rating;
   UserModel({
     this.id,
     this.name,
@@ -17,6 +19,8 @@ class UserModel {
     this.lng,
     this.phone,
     this.avatar,
+      this.price,
+      this.rating
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -27,8 +31,10 @@ class UserModel {
       email: json['email'] ?? '',
       phone: json['phone'] ?? '',
       lat: json['lat'] ?? 0.0,
-      lng: json['lng'] ?? 0.0
-     
+      lng: json['lng'] ?? 0.0,
+      address: json['address'] ?? '',
+      price: json['price'] ?? 0.0,
+      rating: json['rating'] ?? 0.0,
     );
   }
 
@@ -41,6 +47,8 @@ class UserModel {
     double? lng,
     String? phone,
     String? avatar,
+    double? price,
+    double? rating,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -51,6 +59,8 @@ class UserModel {
       lng: lng ?? this.lng,
       phone: phone ?? this.phone,
       avatar: avatar ?? this.avatar,
+      price: price ?? this.price,
+      rating: rating ?? this.rating,
     );
   }
 }

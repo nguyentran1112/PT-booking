@@ -1,5 +1,5 @@
 import 'package:fitness/common/image_network_cache_common.dart';
-import 'package:fitness/models/gym_room_model.dart';
+import 'package:fitness/models/user_model.dart';
 import 'package:fitness/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -7,16 +7,16 @@ import 'package:intl/intl.dart';
 
 enum Algin { horizontal, vertical }
 
-class GymCard extends StatefulWidget {
-  const GymCard(
-      {super.key, this.algin = Algin.vertical, required this.gymRoomModel});
+class PartnerCard extends StatefulWidget {
+  const PartnerCard(
+      {super.key, this.algin = Algin.vertical, required this.userModel});
   final Algin algin;
-  final GymRoomModel gymRoomModel;
+  final UserModel userModel;
   @override
-  State<GymCard> createState() => _GymCardState();
+  State<PartnerCard> createState() => _PartnerCardState();
 }
 
-class _GymCardState extends State<GymCard> {
+class _PartnerCardState extends State<PartnerCard> {
   @override
   Widget build(BuildContext context) {
     if (widget.algin == Algin.horizontal) {
@@ -29,7 +29,7 @@ class _GymCardState extends State<GymCard> {
               borderRadius: BorderRadius.circular(10),
               child: ImageNetworkCacheCommon(
                 imageUrl:
-                    widget.gymRoomModel.avatar ?? 'https://iili.io/2g3elvS.png',
+                    widget.userModel.avatar ?? 'https://iili.io/2g3elvS.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -40,7 +40,7 @@ class _GymCardState extends State<GymCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.gymRoomModel.name ?? '',
+                widget.userModel.name ?? '',
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
@@ -58,10 +58,10 @@ class _GymCardState extends State<GymCard> {
                       Icons.star,
                       color: Colors.amber,
                     ),
-                    rating: widget.gymRoomModel.rating ?? 0,
+                    rating: widget.userModel.rating ?? 0,
                   ),
                   Text(
-                    (widget.gymRoomModel.rating ?? 0).toStringAsFixed(1),
+                    (widget.userModel.rating ?? 0).toStringAsFixed(1),
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w300,
@@ -77,7 +77,7 @@ class _GymCardState extends State<GymCard> {
                     decimalDigits: 0,
                     locale: 'vi',
                     symbol: 'đ',
-                  ).format(widget.gymRoomModel.price),
+                  ).format(widget.userModel.price),
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w300,
@@ -112,8 +112,9 @@ class _GymCardState extends State<GymCard> {
         Expanded(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: const ImageNetworkCacheCommon(
-              imageUrl: 'https://iili.io/2g3elvS.png',
+            child: ImageNetworkCacheCommon(
+              imageUrl:
+                  widget.userModel.avatar ?? 'https://iili.io/2g3elvS.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -123,7 +124,7 @@ class _GymCardState extends State<GymCard> {
           children: [
             Expanded(
               child: Text(
-                widget.gymRoomModel.name ?? '',
+                widget.userModel.name ?? '',
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
@@ -133,7 +134,7 @@ class _GymCardState extends State<GymCard> {
             Row(
               children: [
                 Text(
-                  (widget.gymRoomModel.rating ?? 0).toStringAsFixed(1),
+                  (widget.userModel.rating ?? 0).toStringAsFixed(1),
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w300,
@@ -152,7 +153,7 @@ class _GymCardState extends State<GymCard> {
               decimalDigits: 0,
               locale: 'vi',
               symbol: 'đ',
-            ).format(widget.gymRoomModel.price),
+            ).format(widget.userModel.price),
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w300,

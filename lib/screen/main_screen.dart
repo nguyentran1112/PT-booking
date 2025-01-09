@@ -4,6 +4,7 @@ import 'package:fitness/screen/booking/booking_screen.dart';
 import 'package:fitness/screen/bottom_bar_icon.dart';
 import 'package:fitness/screen/favorite/favorite_screen.dart';
 import 'package:fitness/screen/home_screen/home_screen.dart';
+import 'package:fitness/screen/notification/notification_screen.dart';
 import 'package:fitness/screen/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     const HomeScreen(),
     const FavoriteScreen(),
     const BookingScreen(),
-    const HomeScreen(),
+    const NotificationScreen(),
     const ProfilePage(),
   ];
   int _currentIndex = 0;
