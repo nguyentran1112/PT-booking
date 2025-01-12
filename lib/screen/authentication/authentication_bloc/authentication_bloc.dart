@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
@@ -41,11 +43,25 @@ class AuthenticationBloc
       final String uid = userCredential.user?.uid ?? '';
       final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
       final userSnapshot = await userDoc.get();
+      String? base64Image;
       if (!userSnapshot.exists) {
+        if (userCredential.user?.photoURL != null) {
+          try {
+            final response =
+                await http.get(Uri.parse(userCredential.user!.photoURL!));
+            if (response.statusCode == 200) {
+              base64Image = base64Encode(response.bodyBytes);
+            } else {
+              print('Failed to download image');
+            }
+          } catch (e) {
+            print('Error downloading or converting image: $e');
+          }
+        }
         await userDoc.set({
           'email': email,
           'name': userCredential.user?.displayName ?? '',
-          'avatar': userCredential.user?.photoURL ?? '',
+          'avatar': base64Image ?? '',
           'id': uid,
         });
       }
