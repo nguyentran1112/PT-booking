@@ -40,7 +40,7 @@ class _BannerViewState extends State<BannerView> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: ImageNetworkCacheCommon(
-                              imageUrl: e, fit: BoxFit.fill),
+                              base64: e, fit: BoxFit.fill),
                         ),
                       ))
                   .toList(),

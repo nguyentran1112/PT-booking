@@ -28,7 +28,7 @@ class _PartnerCardState extends State<PartnerCard> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: ImageNetworkCacheCommon(
-                imageUrl:
+                base64:
                     widget.userModel.avatar ?? 'https://iili.io/2g3elvS.png',
                 fit: BoxFit.cover,
               ),
@@ -113,8 +113,7 @@ class _PartnerCardState extends State<PartnerCard> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: ImageNetworkCacheCommon(
-              imageUrl:
-                  widget.userModel.avatar ?? 'https://iili.io/2g3elvS.png',
+              base64: widget.userModel.avatar ?? 'https://iili.io/2g3elvS.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -131,42 +130,57 @@ class _PartnerCardState extends State<PartnerCard> {
                     color: ColorUtils.fromHex('#303030')),
               ),
             ),
-            Row(
-              children: [
-                Text(
-                  (widget.userModel.rating ?? 0).toStringAsFixed(1),
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300,
-                      color: ColorUtils.fromHex('#303030')),
-                ),
-                Icon(Icons.star, color: ColorUtils.fromHex('#FFD912')),
-              ],
-            ),
           ],
         ),
         const SizedBox(height: 10),
-        RichText(
-            text: TextSpan(children: [
-          TextSpan(
-            text: NumberFormat.currency(
-              decimalDigits: 0,
-              locale: 'vi',
-              symbol: 'đ',
-            ).format(widget.userModel.price),
-            style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w300,
-                color: ColorUtils.fromHex('#303030')),
+        // RichText(
+        //     text: TextSpan(children: [
+        //   TextSpan(
+        //     text: NumberFormat.currency(
+        //       decimalDigits: 0,
+        //       locale: 'vi',
+        //       symbol: 'đ',
+        //     ).format(widget.userModel.price),
+        //     style: TextStyle(
+        //         fontSize: 18,
+        //         fontWeight: FontWeight.w300,
+        //         color: ColorUtils.fromHex('#303030')),
+        //   ),
+        //   TextSpan(
+        //     text: '/tháng',
+        //     style: TextStyle(
+        //         fontSize: 18,
+        //         fontWeight: FontWeight.w300,
+        //         color: ColorUtils.fromHex('#8A8A8A')),
+        //   ),
+        // ])),
+        Chip(
+          label: const Text('Tăng cơ'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
           ),
-          TextSpan(
-            text: '/tháng',
-            style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w300,
-                color: ColorUtils.fromHex('#8A8A8A')),
+          backgroundColor: Colors.white,
+          labelStyle: const TextStyle(
+            color: Colors.grey,
           ),
-        ]))
+          side: BorderSide(
+            color: ColorUtils.fromHex('#FA6400'),
+            width: 2, // Border width
+          ),
+        ),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            Text(
+              (widget.userModel.rating ?? 0).toStringAsFixed(1),
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                  color: ColorUtils.fromHex('#303030')),
+            ),
+            Icon(Icons.star, color: ColorUtils.fromHex('#FFD912')),
+          ],
+        ),
       ],
     );
   }

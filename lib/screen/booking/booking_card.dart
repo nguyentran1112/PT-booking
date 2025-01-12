@@ -28,7 +28,7 @@ class BookingCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                ClipRect(child: ImageNetworkCacheCommon(imageUrl: data.partner?.avatar ?? '')),
+                ClipRect(child: ImageNetworkCacheCommon(base64: data.partner?.avatar ?? '')),
                 const SizedBox(
                   height: 6,
                 ),
