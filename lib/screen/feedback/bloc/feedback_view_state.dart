@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'feedback_view_bloc.dart';
 
 enum FeedbackViewStatus { initial, loading, loaded, error }
@@ -23,4 +24,22 @@ class FeedbackViewState extends Equatable {
         status,
         feedbacks,
       ];
+
+  FeedbackViewState copyWith({
+    String? message,
+    FeedbackViewStatus? status,
+    List<FeedbackModel>? feedbacks,
+    int? pageNum,
+    int? pageSize,
+    bool? hasMore,
+  }) {
+    return FeedbackViewState(
+      message: message ?? this.message,
+      status: status ?? this.status,
+      feedbacks: feedbacks ?? this.feedbacks,
+      pageNum: pageNum ?? this.pageNum,
+      pageSize: pageSize ?? this.pageSize,
+      hasMore: hasMore ?? this.hasMore,
+    );
+  }
 }

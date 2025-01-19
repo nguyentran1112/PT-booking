@@ -25,6 +25,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       schedules: (json['schedules'] as List<dynamic>?)
           ?.map((e) => ScheduleModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      bod: json['bod'] as String?,
+      gender: json['gender'] as String?,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -42,4 +44,6 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'experience': instance.experience,
       'socials': instance.socials?.map((e) => e.toJson()).toList(),
       'schedules': instance.schedules?.map((e) => e.toJson()).toList(),
+      'bod': instance.bod,
+      'gender': instance.gender,
     };

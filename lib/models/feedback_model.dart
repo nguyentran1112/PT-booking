@@ -11,7 +11,8 @@ class FeedbackModel {
   String? id;
   String? createdBy;
   DateTime? createdAt;
-  String? updatedAt;
+  DateTime? updatedAt;
+  String? userId;
   String? content;
   double? rating;
   bool? hidden;
@@ -23,6 +24,7 @@ class FeedbackModel {
     this.createdBy,
     this.createdAt,
     this.updatedAt,
+    this.userId,
     this.content,
     this.rating,
     this.hidden,
@@ -38,7 +40,8 @@ class FeedbackModel {
     String? id,
     String? createdBy,
     DateTime? createdAt,
-    String? updatedAt,
+    DateTime? updatedAt,
+    String? userId,
     String? content,
     double? rating,
     bool? hidden,
@@ -49,6 +52,7 @@ class FeedbackModel {
       createdBy: createdBy ?? this.createdBy,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      userId: userId ?? this.userId,
       content: content ?? this.content,
       rating: rating ?? this.rating,
       hidden: hidden ?? this.hidden,

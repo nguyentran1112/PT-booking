@@ -23,14 +23,25 @@ class _CreateFeedbackDialogState extends State<CreateFeedbackDialog> {
   initState() {
     super.initState();
     feedback.createdBy = Utils.getMyId(context) ?? '';
-    feedback.updatedAt = feedback.createdBy;
+    feedback.userId = widget.user.id ?? '';
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CreateFeedbackBloc(),
-      child: BlocBuilder<CreateFeedbackBloc, CreateFeedbackState>(
+      child: BlocConsumer<CreateFeedbackBloc, CreateFeedbackState>(
+        listener: (context, state) {
+          if (state.status == CreateFeedbackStatus.success) {
+            SnackBar snackBar = SnackBar(
+              content: const Text('Đánh giá thành công'),
+              duration: const Duration(seconds: 2),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            context.pop(
+                state.feedback?.copyWith(user: Utils.getMyProfile(context)));
+          }
+        },
         builder: (context, state) {
           return Dialog(
             backgroundColor: Colors.white,

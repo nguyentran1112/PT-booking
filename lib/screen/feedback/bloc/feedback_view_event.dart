@@ -14,3 +14,8 @@ final class LoadFeedbacks extends FeedbackViewEvent {
 final class LoadMoreFeedbacks extends FeedbackViewEvent {
   const LoadMoreFeedbacks();
 }
+
+final class AddNewFeedback extends FeedbackViewEvent {
+  final FeedbackModel feedback;
+  const AddNewFeedback(this.feedback);
+}

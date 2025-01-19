@@ -43,6 +43,8 @@ class UserModel {
     this.experience,
     this.socials,
     this.schedules,
+    this.bod,
+    this.gender,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
