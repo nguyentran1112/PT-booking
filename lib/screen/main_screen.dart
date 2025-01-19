@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
     
     if (_authenticationBloc.state is Unauthenticated) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        context.pushReplacement(RouterConstants.login.path);
+        context.go(RouterConstants.login.path);
       });
     }
     super.didChangeDependencies();

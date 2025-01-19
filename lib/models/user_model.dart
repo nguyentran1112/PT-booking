@@ -1,5 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:fitness/models/schedule_model.dart';
+import 'package:fitness/models/social_model.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'user_model.g.dart';
+
+@JsonSerializable(
+  fieldRename: FieldRename.snake,
+  explicitToJson: true,
+)
 class UserModel {
   final String? id;
   String? name;
@@ -11,6 +20,11 @@ class UserModel {
   String? avatar;
   double? price;
   double? rating;
+
+  int? totalRating;
+  double? experience;
+  List<SocialModel>? socials;
+  List<ScheduleModel>? schedules;
   String? bod;
   String? gender;
 
@@ -25,47 +39,19 @@ class UserModel {
     this.avatar,
     this.price,
     this.rating,
+    this.totalRating,
+    this.experience,
+    this.socials,
+    this.schedules,
     this.bod,
-    this.gender
+    this.gender,
   });
 
-  // Manually implemented fromJson method
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-      id: json['id'] ?? '',
-      name: json['name'] ?? '',
-      avatar: json['avatar'] ?? '',
-      email: json['email'] ?? '',
-      phone: json['phone'] ?? '',
-      lat: json['lat']?.toDouble() ?? 0.0,
-      lng: json['lng']?.toDouble() ?? 0.0,
-      address: json['address'] ?? '',
-      price: json['price']?.toDouble() ?? 0.0,
-      rating: json['rating']?.toDouble() ?? 0.0,
-      bod: json['bod'] ?? '',
-      gender: json['gender'] ?? ''
-    );
-  }
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 
-  // Manually implemented toJson method
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'email': email,
-      'address': address,
-      'lat': lat,
-      'lng': lng,
-      'phone': phone,
-      'avatar': avatar,
-      'price': price,
-      'rating': rating,
-      'bod': bod,
-      'gender': gender
-    };
-  }
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
-  // CopyWith method to create a new instance with updated fields
   UserModel copyWith({
     String? id,
     String? name,
@@ -77,8 +63,12 @@ class UserModel {
     String? avatar,
     double? price,
     double? rating,
+    int? totalRating,
+    double? experience,
+    List<SocialModel>? socials,
+    List<ScheduleModel>? schedules,
     String? bod,
-    String? gender
+    String? gender,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -91,8 +81,12 @@ class UserModel {
       avatar: avatar ?? this.avatar,
       price: price ?? this.price,
       rating: rating ?? this.rating,
+      totalRating: totalRating ?? this.totalRating,
+      experience: experience ?? this.experience,
+      socials: socials ?? this.socials,
+      schedules: schedules ?? this.schedules,
       bod: bod ?? this.bod,
-      gender: gender ?? this.gender
+      gender: gender ?? this.gender,
     );
   }
 }

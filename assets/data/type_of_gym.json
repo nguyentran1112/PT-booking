@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Gym"
+    },
+    {
+        "id": 2,
+        "name": "Tăng co cơ bắp"
+    },
+    {
+        "id": 3,
+        "name": "Giảm cân"
+    },
+    {
+        "id": 4,
+        "name": "Yoga"
+    },
+    {
+        "id" : 5,
+        "name": "Dance"
+    }
+]

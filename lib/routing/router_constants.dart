@@ -3,6 +3,9 @@ class RouterConstants {
   static RouterModel home = RouterModel(path: '/', name: 'home');
   static RouterModel login = RouterModel(path: '/login', name: 'login');
   static RouterModel qrCode = RouterModel(path: 'qrcode', name: 'qrCode');
+  static RouterModel partnerDetail =
+      RouterModel(path: 'partner/:id', name: 'partnerDetail');
+  static RouterModel feedback = RouterModel(path: 'feedback', name: 'feedback');
   static RouterModel profile = RouterModel(path: '/profile', name: 'profile');
   static RouterModel profileDetail = RouterModel(path: '/profile-detail', name: 'profile-detail');
   static RouterModel profileEdit = RouterModel(path: '/profile-eidt', name: 'profile-edit');
