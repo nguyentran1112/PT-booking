@@ -2,11 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:fitness/firebase_options.dart';
 import 'package:fitness/routing/routing.dart';
 import 'package:fitness/screen/authentication/authentication_bloc/authentication_bloc.dart';
+import 'package:fitness/screen/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
   //WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,9 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(
           create: (context) => AuthenticationBloc()..add(AppLoad()),
+        ),
+        BlocProvider(
+          create: (context) => ProfileBloc(),
         ),
       ],
       child: MaterialApp.router(
