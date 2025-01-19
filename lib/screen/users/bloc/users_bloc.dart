@@ -14,7 +14,7 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
         final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
             .collection('users')
             .get();
-
+  
         if (querySnapshot.docs.isNotEmpty) {
           final users = querySnapshot.docs.map((doc) {
             final data = doc.data() as Map<String, dynamic>;

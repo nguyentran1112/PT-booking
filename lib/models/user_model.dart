@@ -1,4 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:fitness/models/schedule_model.dart';
+import 'package:fitness/models/social_model.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'user_model.g.dart';
+
+@JsonSerializable(
+  fieldRename: FieldRename.snake,
+  explicitToJson: true,
+)
 class UserModel {
   final String? id;
   String? name;
@@ -10,6 +20,10 @@ class UserModel {
   String? avatar;
   double? price;
   double? rating;
+  int? totalRating;
+  double? experience;
+  List<SocialModel>? socials;
+  List<ScheduleModel>? schedules;
   UserModel({
     this.id,
     this.name,
@@ -19,25 +33,19 @@ class UserModel {
     this.lng,
     this.phone,
     this.avatar,
-      this.price,
-      this.rating
+    this.price,
+    this.rating,
+    this.totalRating,
+    this.experience,
+    this.socials,
+    this.schedules,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-      id: json['id'] ?? '',
-      name: json['name'] ?? '',
-      avatar: json['avatar'] ?? '',
-      email: json['email'] ?? '',
-      phone: json['phone'] ?? '',
-      lat: json['lat'] ?? 0.0,
-      lng: json['lng'] ?? 0.0,
-      address: json['address'] ?? '',
-      price: json['price'] ?? 0.0,
-      rating: json['rating'] ?? 0.0,
-    );
-  }
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
+  
   UserModel copyWith({
     String? id,
     String? name,
@@ -49,6 +57,10 @@ class UserModel {
     String? avatar,
     double? price,
     double? rating,
+    int? totalRating,
+    double? experience,
+    List<SocialModel>? socials,
+    List<ScheduleModel>? schedules,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -61,6 +73,10 @@ class UserModel {
       avatar: avatar ?? this.avatar,
       price: price ?? this.price,
       rating: rating ?? this.rating,
+      totalRating: totalRating ?? this.totalRating,
+      experience: experience ?? this.experience,
+      socials: socials ?? this.socials,
+      schedules: schedules ?? this.schedules,
     );
   }
 }

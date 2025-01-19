@@ -2,14 +2,22 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:fitness/firebase_options.dart';
 import 'package:fitness/routing/routing.dart';
 import 'package:fitness/screen/authentication/authentication_bloc/authentication_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
-  //WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorageDirectory.web
+        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
+  );
+  runApp(MyApp());
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

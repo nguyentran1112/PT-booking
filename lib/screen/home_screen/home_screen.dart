@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 const SizedBox(height: 16),
-                const BannerView(),
+                const SizedBox(width: double.infinity, child: BannerView()),
                 const SizedBox(height: 16),
                 Divider(
                   color: ColorUtils.fromHex('#ECECEC'),
