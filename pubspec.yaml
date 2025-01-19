@@ -30,6 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  image_picker_web: ^4.0.0
+  simple_web_camera: ^1.0.11
+  camera_web: ^0.3.5
   flutter_web_plugins:
     sdk: flutter
 

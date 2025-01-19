@@ -1,7 +1,6 @@
 import 'package:fitness/common/image_network_cache_common.dart';
 import 'package:fitness/routing/router_constants.dart';
 import 'package:fitness/screen/authentication/authentication_bloc/authentication_bloc.dart';
-import 'package:fitness/screen/profile/profile_detail/profile_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -53,6 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(height: 16),
                 _buildOptionsList(),
                 _buildLogoutButton(),
+                const SizedBox(height: 24),
               ],
             ),
           );
@@ -87,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
             leading: const Icon(Icons.people),
             title: const Text('Thông tin tài khoản'),
             onTap: () {
-              context.push(RouterConstants.home.path);
+              context.push(RouterConstants.profileDetail.path);
             },
           ),
           const Divider(),

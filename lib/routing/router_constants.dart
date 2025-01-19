@@ -6,6 +6,9 @@ class RouterConstants {
   static RouterModel partnerDetail =
       RouterModel(path: 'partner/:id', name: 'partnerDetail');
   static RouterModel feedback = RouterModel(path: 'feedback', name: 'feedback');
+  static RouterModel profile = RouterModel(path: '/profile', name: 'profile');
+  static RouterModel profileDetail = RouterModel(path: '/profile-detail', name: 'profile-detail');
+  static RouterModel profileEdit = RouterModel(path: '/profile-eidt', name: 'profile-edit');
 }
 
 class RouterModel {

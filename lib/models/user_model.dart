@@ -20,10 +20,14 @@ class UserModel {
   String? avatar;
   double? price;
   double? rating;
+
   int? totalRating;
   double? experience;
   List<SocialModel>? socials;
   List<ScheduleModel>? schedules;
+  String? bod;
+  String? gender;
+
   UserModel({
     this.id,
     this.name,
@@ -45,7 +49,7 @@ class UserModel {
       _$UserModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
-  
+
   UserModel copyWith({
     String? id,
     String? name,
@@ -61,6 +65,8 @@ class UserModel {
     double? experience,
     List<SocialModel>? socials,
     List<ScheduleModel>? schedules,
+    String? bod,
+    String? gender,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -77,6 +83,8 @@ class UserModel {
       experience: experience ?? this.experience,
       socials: socials ?? this.socials,
       schedules: schedules ?? this.schedules,
+      bod: bod ?? this.bod,
+      gender: gender ?? this.gender,
     );
   }
 }
