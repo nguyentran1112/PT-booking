@@ -147,29 +147,13 @@ class _PartnerCardState extends State<PartnerCard> {
             ],
           ),
           const SizedBox(height: 10),
-          // RichText(
-          //     text: TextSpan(children: [
-          //   TextSpan(
-          //     text: NumberFormat.currency(
-          //       decimalDigits: 0,
-          //       locale: 'vi',
-          //       symbol: 'đ',
-          //     ).format(widget.userModel.price),
-          //     style: TextStyle(
-          //         fontSize: 18,
-          //         fontWeight: FontWeight.w300,
-          //         color: ColorUtils.fromHex('#303030')),
-          //   ),
-          //   TextSpan(
-          //     text: '/tháng',
-          //     style: TextStyle(
-          //         fontSize: 18,
-          //         fontWeight: FontWeight.w300,
-          //         color: ColorUtils.fromHex('#8A8A8A')),
-          //   ),
-          // ])),
-          Chip(
-            label: const Text('Tăng cơ'),
+          Wrap(
+            spacing: 5,
+            runSpacing: 4,
+            children: (widget.userModel.categories ?? [])
+                .map(
+                  (e) => Chip(
+                    label: Text(e),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -181,6 +165,9 @@ class _PartnerCardState extends State<PartnerCard> {
               color: ColorUtils.fromHex('#FA6400'),
               width: 2, // Border width
             ),
+                  ),
+                )
+                .toList(),
           ),
           const SizedBox(height: 10),
           Row(

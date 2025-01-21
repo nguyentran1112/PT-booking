@@ -15,3 +15,12 @@ final class LoadPartnerDetail extends PartnerDetailEvent {
   @override
   List<Object> get props => [id];
 }
+
+final class UpdatePartnerDetail extends PartnerDetailEvent {
+  final UserModel user;
+
+  const UpdatePartnerDetail(this.user);
+
+  @override
+  List<Object> get props => [user];
+}

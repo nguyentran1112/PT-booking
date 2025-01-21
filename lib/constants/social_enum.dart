@@ -33,7 +33,7 @@ extension SocialEnumExtension on SocialEnum {
       case SocialEnum.linkedin:
         return 'assets/linkedin.svg';
       default:
-        return 'assets/globe.svg';
+        return 'assets/global.svg';
     }
   }
 }

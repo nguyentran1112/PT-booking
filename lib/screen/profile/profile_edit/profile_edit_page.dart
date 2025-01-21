@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
-import 'dart:html' as html; // For web file handling
+
+// For web file handling
 import 'package:fitness/common/custom_outline_border_input.dart';
 import 'package:fitness/common/image_network_cache_common.dart';
 import 'package:fitness/screen/authentication/authentication_bloc/authentication_bloc.dart';
@@ -10,7 +10,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker_web/image_picker_web.dart';
-
 import 'package:intl/intl.dart';
 import 'package:simple_web_camera/simple_web_camera.dart';
 

@@ -1,5 +1,8 @@
 import 'package:fitness/common/image_network_cache_common.dart';
 import 'package:fitness/constants/social_enum.dart';
+import 'package:fitness/models/schedule_model.dart';
+import 'package:fitness/models/user_model.dart';
+import 'package:fitness/routing/router_constants.dart';
 import 'package:fitness/screen/feedback/feedback_dialog.dart';
 import 'package:fitness/screen/partner/bloc/partner_detail_bloc.dart';
 import 'package:fitness/utils/color_utils.dart';
@@ -8,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class PartnerDetailScreen extends StatefulWidget {
   const PartnerDetailScreen({super.key, required this.id});
@@ -67,9 +71,14 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                       ],
                     ),
                     Text(state.partner.email ?? ''),
+                    Text(
+                        'Kinh nghiệp huấn luyện: ${state.partner.experience} năm'),
+                    SizedBox(
+                      height: 6,
+                    ),
                     Wrap(
                       spacing: 3.0, // gap between adjacent chips
-                      children: ['Tăng cơ', 'Giảm cơ'].map((e) {
+                      children: (state.partner.categories ?? []).map((e) {
                         return Chip(
                           label: Text(e),
                           shape: RoundedRectangleBorder(
@@ -106,8 +115,6 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                         const Text('Giới thiệu'),
                         GestureDetector(
                           onTap: () {
-                            // context.goNamed(RouterConstants.feedback.name,
-                            //     pathParameters: {'id': widget.id});
                             showDialog(
                               context: context,
                               builder: (context) {
@@ -119,6 +126,29 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                           },
                           child: const Text(
                             'Đánh giá',
+                            style: TextStyle(
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            context.pushNamed(
+                                RouterConstants.profilePTEdit.name,
+                                pathParameters: {
+                                  'id': widget.id
+                                }).then((value) {
+                              if (value != null &&
+                                  mounted &&
+                                  value is UserModel) {
+                                context
+                                    .read<PartnerDetailBloc>()
+                                    .add(UpdatePartnerDetail(value));
+                              }
+                            });
+                          },
+                          child: const Text(
+                            'update',
                             style: TextStyle(
                               color: Colors.blue,
                             ),
@@ -137,19 +167,19 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                         ),
                       ),
                       width: double.infinity,
-                      child: const Text('...Giới thiệu bản thân'),
+                      child: Text(state.partner.description ?? ''),
                     ),
                     const SizedBox(
                       height: 12,
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Text('Địa điểm: '),
                         SizedBox(
                           width: 12,
                         ),
                         Text(
-                          'Gò vấp, tân bình, quận 1',
+                          state.partner.address ?? '',
                           style: TextStyle(
                             color: Colors.grey,
                           ),
@@ -209,18 +239,21 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                       itemBuilder: (context, index) {
                         return Row(
                           children: [
-                            Text(state
-                                    .partner.schedules?[index].dayOfWeek.name ??
-                                ''),
+                            Text(translateDayOfWeek(
+                                state.partner.schedules?[index].dayOfWeek ??
+                                    ScheduleEnum.monday)),
                             const SizedBox(
                               width: 12,
                             ),
                             Wrap(
+                              spacing: 3.0, // gap between adjacent chips
+                              runSpacing: 3.0,
                               children: state
                                       .partner.schedules?[index].timeRangers
                                       .map((e) {
                                     return Chip(
-                                      label: Text('${e.start} - ${e.end}'),
+                                      label: Text(
+                                          '${e.start.format(context)} - ${e.end.format(context)}'),
                                       backgroundColor: Colors.white,
                                       labelStyle: const TextStyle(
                                         color: Colors.grey,
@@ -253,4 +286,25 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
       ),
     );
   }
+  String translateDayOfWeek(ScheduleEnum dayOfWeek) {
+    switch (dayOfWeek) {
+      case ScheduleEnum.monday:
+        return 'Thứ 2';
+      case ScheduleEnum.tuesday:
+        return 'Thứ 3';
+      case ScheduleEnum.wednesday:
+        return 'Thứ 4';
+      case ScheduleEnum.thursday:
+        return 'Thứ 5';
+      case ScheduleEnum.friday:
+        return 'Thứ 6';
+      case ScheduleEnum.saturday:
+        return 'Thứ 7';
+      case ScheduleEnum.sunday:
+        return 'Chủ nhật';
+      default:
+        return 'Không xác định';
+    }
+  }
 }
+

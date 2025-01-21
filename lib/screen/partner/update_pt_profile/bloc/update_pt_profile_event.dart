@@ -11,3 +11,8 @@ final class LoadProfile extends UpdatePtProfileEvent {
   final String id;
   const LoadProfile(this.id);
 }
+
+final class UpdateProfile extends UpdatePtProfileEvent {
+  final UserModel user;
+  const UpdateProfile(this.user);
+}

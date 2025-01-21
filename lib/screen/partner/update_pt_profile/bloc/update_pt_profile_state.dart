@@ -1,7 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'update_pt_profile_bloc.dart';
 
-enum UpdatePtProfileStatus { initial, loading, success, error }
+enum UpdatePtProfileStatus {
+  initial,
+  loading,
+  success,
+  error,
+  loaded,
+  updating
+}
 
 class UpdatePtProfileState extends Equatable {
   const UpdatePtProfileState({

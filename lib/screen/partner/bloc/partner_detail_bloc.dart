@@ -11,6 +11,7 @@ part 'partner_detail_state.dart';
 class PartnerDetailBloc extends Bloc<PartnerDetailEvent, PartnerDetailState> {
   PartnerDetailBloc() : super(PartnerDetailInitial()) {
     on<LoadPartnerDetail>(_loadPartnerById);
+    on<UpdatePartnerDetail>(_updatePartnerDetail);
   }
 
   FutureOr<void> _loadPartnerById(
@@ -27,6 +28,16 @@ class PartnerDetailBloc extends Bloc<PartnerDetailEvent, PartnerDetailState> {
       } else {
         emit(PartnerDetailNotFound());
       }
+    } catch (e) {
+      emit(PartnerDetailLoadFailure(e.toString()));
+    }
+  }
+  FutureOr<void> _updatePartnerDetail(
+      UpdatePartnerDetail event, Emitter<PartnerDetailState> emit) async {
+    try {
+      emit(PartnerDetailLoaded(
+        event.user,
+      ));
     } catch (e) {
       emit(PartnerDetailLoadFailure(e.toString()));
     }
