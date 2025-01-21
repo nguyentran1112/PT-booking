@@ -20,13 +20,14 @@ class UserModel {
   String? avatar;
   double? price;
   double? rating;
-
+  String? description;
   int? totalRating;
   double? experience;
   List<SocialModel>? socials;
   List<ScheduleModel>? schedules;
   String? bod;
   String? gender;
+  List<String>? categories;
 
   UserModel({
     this.id,
@@ -39,12 +40,14 @@ class UserModel {
     this.avatar,
     this.price,
     this.rating,
+    this.description,
     this.totalRating,
     this.experience,
     this.socials,
     this.schedules,
     this.bod,
     this.gender,
+    this.categories,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -63,12 +66,14 @@ class UserModel {
     String? avatar,
     double? price,
     double? rating,
+    String? description,
     int? totalRating,
     double? experience,
     List<SocialModel>? socials,
     List<ScheduleModel>? schedules,
     String? bod,
     String? gender,
+    List<String>? categories,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -81,12 +86,14 @@ class UserModel {
       avatar: avatar ?? this.avatar,
       price: price ?? this.price,
       rating: rating ?? this.rating,
+      description: description ?? this.description,
       totalRating: totalRating ?? this.totalRating,
       experience: experience ?? this.experience,
       socials: socials ?? this.socials,
       schedules: schedules ?? this.schedules,
       bod: bod ?? this.bod,
       gender: gender ?? this.gender,
+      categories: categories ?? this.categories,
     );
   }
 }

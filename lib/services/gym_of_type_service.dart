@@ -1,21 +1,15 @@
-import 'dart:convert';
-
-import 'package:fitness/models/gym_of_type.dart';
-import 'package:http/http.dart' as http;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GymOfTypeService {
-  static const String _jsonUrl = '/assets/type_of_gym.json';
-
-  Future<List<GymOfTypeModel>> getGymTypes() async {
+ 
+  Future<List<String>> getGymTypes() async {
+    final typeOfGymCollection =
+        FirebaseFirestore.instance.collection('type_of_gym');
     try {
-      final response = await http.get(Uri.parse(_jsonUrl));
-
-      if (response.statusCode == 200) {
-        final List<dynamic> jsonData = json.decode(response.body);
-        return jsonData.map((json) => GymOfTypeModel.fromJson(json)).toList();
-      } else {
-        throw Exception('Failed to load gym types');
-      }
+      final querySnapshot = await typeOfGymCollection.get();
+      return querySnapshot.docs
+          .map((doc) => doc.data()['name'] as String)
+          .toList();
     } catch (e) {
       throw Exception('Error fetching gym types: $e');
     }

@@ -4,6 +4,7 @@ import 'package:fitness/screen/authentication/view/auth_screen.dart';
 import 'package:fitness/screen/feedback/feedback_screen.dart';
 import 'package:fitness/screen/main_screen.dart';
 import 'package:fitness/screen/partner/partner_detail_screen.dart';
+import 'package:fitness/screen/partner/update_pt_profile/update_pt_profile.dart';
 import 'package:fitness/screen/profile/profile_detail/profile_detail_page.dart';
 import 'package:fitness/screen/profile/profile_edit/profile_edit_page.dart';
 import 'package:fitness/screen/profile/profile_page.dart';
@@ -47,6 +48,17 @@ class AppRouter {
                       return const PageNotFound();
                     }
                     return FeedbackScreen(userId: id);
+                  },
+                ),
+                GoRoute(
+                  path: RouterConstants.profilePTEdit.path,
+                  name: RouterConstants.profilePTEdit.name,
+                  builder: (context, state) {
+                    final id = state.pathParameters['id'] ?? '';
+                    if (id.isEmpty) {
+                      return const PageNotFound();
+                    }
+                    return UpdatePtProfile(userId: id);
                   },
                 ),
               ]

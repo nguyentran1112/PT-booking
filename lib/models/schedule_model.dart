@@ -9,8 +9,8 @@ part 'schedule_model.g.dart';
   explicitToJson: true,
 )
 class ScheduleModel {
-  final ScheduleEnum dayOfWeek;
-  final List<TimeRanger> timeRangers;
+  ScheduleEnum dayOfWeek;
+  List<TimeRanger> timeRangers;
 
   ScheduleModel({
     required this.dayOfWeek,
@@ -27,11 +27,11 @@ class TimeRanger {
   @JsonKey(
       fromJson: DateTimeUtils.convertStringToTimeOfDay,
       toJson: DateTimeUtils.convertTimeOfDayToString)
-  final TimeOfDay start;
+  TimeOfDay start;
   @JsonKey(
       fromJson: DateTimeUtils.convertStringToTimeOfDay,
       toJson: DateTimeUtils.convertTimeOfDayToString)
-  final TimeOfDay end;
+  TimeOfDay end;
 
   TimeRanger({
     required this.start,

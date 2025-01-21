@@ -3,6 +3,7 @@ import 'package:fitness/firebase_options.dart';
 import 'package:fitness/routing/routing.dart';
 import 'package:fitness/screen/authentication/authentication_bloc/authentication_bloc.dart';
 import 'package:fitness/screen/profile/bloc/profile_bloc.dart';
+import 'package:fitness/screen/type_of_gym_cubit/type_of_gym_cubit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +45,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
           create: (context) => ProfileBloc(),
         ),
+        BlocProvider(create: (context) => TypeOfGymCubit()..loadTypeOfGym()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

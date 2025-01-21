@@ -17,6 +17,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       avatar: json['avatar'] as String?,
       price: (json['price'] as num?)?.toDouble(),
       rating: (json['rating'] as num?)?.toDouble(),
+      description: json['description'] as String?,
       totalRating: (json['total_rating'] as num?)?.toInt(),
       experience: (json['experience'] as num?)?.toDouble(),
       socials: (json['socials'] as List<dynamic>?)
@@ -27,6 +28,9 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
           .toList(),
       bod: json['bod'] as String?,
       gender: json['gender'] as String?,
+      categories: (json['categories'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -40,10 +44,12 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'avatar': instance.avatar,
       'price': instance.price,
       'rating': instance.rating,
+      'description': instance.description,
       'total_rating': instance.totalRating,
       'experience': instance.experience,
       'socials': instance.socials?.map((e) => e.toJson()).toList(),
       'schedules': instance.schedules?.map((e) => e.toJson()).toList(),
       'bod': instance.bod,
       'gender': instance.gender,
+      'categories': instance.categories,
     };

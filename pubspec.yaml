@@ -60,6 +60,8 @@ dependencies:
   hydrated_bloc: ^10.0.0
   path_provider: ^2.1.5
   uuid: ^4.5.1
+  image_picker: ^1.1.2
+  time_range_picker: ^2.3.0
    
 
 dev_dependencies:
