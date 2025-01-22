@@ -1,6 +1,8 @@
 import 'package:fitness/common/image_network_cache_common.dart';
+import 'package:fitness/models/user_model.dart';
 import 'package:fitness/routing/router_constants.dart';
 import 'package:fitness/screen/authentication/authentication_bloc/authentication_bloc.dart';
+import 'package:fitness/screen/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,10 +11,18 @@ class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  ProfilePageState createState() => ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class ProfilePageState extends State<ProfilePage> {
+  late ProfileBloc _profileBloc;
+
+  @override
+  void initState() {
+    _profileBloc = context.read<ProfileBloc>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
@@ -50,7 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                _buildOptionsList(),
+                _buildOptionsList(user),
                 _buildLogoutButton(),
                 const SizedBox(height: 24),
               ],
@@ -70,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   // Helper function to build the options list
-  Widget _buildOptionsList() {
+  Widget _buildOptionsList(UserModel user) {
     return Container(
       decoration: const BoxDecoration(color: Colors.white),
       child: ListView(
@@ -87,7 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
             leading: const Icon(Icons.people),
             title: const Text('Thông tin tài khoản'),
             onTap: () {
-              context.push(RouterConstants.profileDetail.path);
+              context.go(RouterConstants.profileDetail.path);
             },
           ),
           const Divider(),
@@ -103,7 +113,12 @@ class _ProfilePageState extends State<ProfilePage> {
             title: Text('Lịch sử tập luyện'),
           ),
           const Divider(),
-          const ListTile(
+          ListTile(
+            onTap: () {
+              _profileBloc
+                  .add(UpdateProfile(request: user.copyWith(isCoach: true)));
+              context.go(RouterConstants.home.path);
+            },
             trailing: Icon(Icons.keyboard_arrow_right_sharp),
             leading: Icon(Icons.fitness_center),
             title: Text('Chuyển sang chế độ Coaching'),

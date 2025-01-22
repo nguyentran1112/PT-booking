@@ -36,7 +36,6 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
                   _buildProfileHeader(user),
                   const SizedBox(height: 24),
                   // Profile Details Section
-                  _buildProfileDetailRow('Tên', user.name ?? 'No Name'),
                   _buildProfileDetailRow(
                       'Email', user.email ?? 'No Email Provided'),
                   _buildProfileDetailRow(
@@ -49,7 +48,7 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
                   const SizedBox(height: 40),
                   ElevatedButton.icon(
                     onPressed: () {
-                      context.pushNamed(RouterConstants.profileEdit.name);
+                      context.go(RouterConstants.profileEdit.path);
                     },
                     icon: const Icon(Icons.login, color: Colors.white),
                     label: const Text(

@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fitness/services/gym_of_type_service.dart';
-
 part 'type_of_gym_state.dart';
 
 class TypeOfGymCubit extends Cubit<TypeOfGymState> {

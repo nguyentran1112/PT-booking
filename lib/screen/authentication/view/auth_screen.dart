@@ -21,7 +21,7 @@ class _AuthScreenState extends State<AuthScreen> {
       body: BlocListener<AuthenticationBloc, AuthenticationState>(
         listener: (context, state) {
           if (state is AuthenticationSuccess) {
-            context.pushReplacementNamed(RouterConstants.home.name);
+            context.pushReplacement(RouterConstants.home.path);
           }
         },
         child: Stack(

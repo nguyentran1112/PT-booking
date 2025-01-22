@@ -31,6 +31,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       categories: (json['categories'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      isCoach: json['is_coach'] as bool?,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -52,4 +53,5 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'bod': instance.bod,
       'gender': instance.gender,
       'categories': instance.categories,
+      'is_coach': instance.isCoach,
     };

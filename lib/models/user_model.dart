@@ -28,6 +28,7 @@ class UserModel {
   String? bod;
   String? gender;
   List<String>? categories;
+  bool? isCoach;
 
   UserModel({
     this.id,
@@ -48,6 +49,7 @@ class UserModel {
     this.bod,
     this.gender,
     this.categories,
+    this.isCoach
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -74,6 +76,7 @@ class UserModel {
     String? bod,
     String? gender,
     List<String>? categories,
+    bool? isCoach
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -94,6 +97,7 @@ class UserModel {
       bod: bod ?? this.bod,
       gender: gender ?? this.gender,
       categories: categories ?? this.categories,
+      isCoach: isCoach ?? this.isCoach
     );
   }
 }
