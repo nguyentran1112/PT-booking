@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           );
         }
-        return const Center(child: Text('Unknown State'));
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }

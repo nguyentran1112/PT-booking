@@ -17,12 +17,6 @@ class _BookingScreenState extends State<BookingScreen> {
     return SafeArea(
       child: Column(
         children: <Widget>[
-          const Text('Đặt lich',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              )),
-          const Divider(),
           TopTabBarCommon(
               tabs: const [
                 'Đặt lịch',
@@ -48,7 +42,7 @@ class _BookingScreenState extends State<BookingScreen> {
       case 1:
         return const BookingHistory();
       default:
-        return const SizedBox();
+        return const BookingList();
     }
   }
 }

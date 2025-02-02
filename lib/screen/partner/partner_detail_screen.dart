@@ -221,12 +221,13 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                             ],
                           ),
                         )),
+                    Center(child: OutlinedButton(onPressed: () {}, child: Text("Booking")))
                   ],
                 ),
               );
             }
 
-            return const Center(child: Text('Không có dữ liệu.'));
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),
